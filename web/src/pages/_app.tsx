@@ -2,9 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from "react-icons/ai";
 import { SiDiscord, SiSpotify } from "react-icons/si";
-import Meta from "@components/Meta";
-import Navbar from "@components/Navbar";
-import Socials from "@components/Socials";
+import { Meta, Navbar, Socials } from "@components";
 
 const links = [
   {
@@ -64,9 +62,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Navbar links={links} />
 
-      <Socials icons={icons} />
-
       <Component {...pageProps} />
+
+      <Socials icons={icons} />
     </>
   );
 }

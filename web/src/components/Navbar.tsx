@@ -1,6 +1,9 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { Fira_Code } from "@next/font/google";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { useToggle, useWindowSize } from "@utils";
+import { useEffect, useRef } from "react";
 
 const FiraCodeFont = Fira_Code({ weight: "400" });
 
@@ -14,6 +17,10 @@ interface Link {
 }
 
 export default function Navbar({ links }: NavbarProps) {
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [opened, toggle] = useToggle(false);
+  const { isMobile } = useWindowSize();
+
   const linkElements = links.map(({ text, href }, index) => {
     const displayNumber = (index > 10 ? `${index + 1}` : `0${index + 1}`) + ".";
 
@@ -23,6 +30,7 @@ export default function Navbar({ links }: NavbarProps) {
         href={href}
         className={clsx(
           "flex flex-row mr-5 text-sm transition-all hover:scale-[1.15]",
+          isMobile && "text-lg",
           FiraCodeFont.className
         )}
       >
@@ -32,8 +40,31 @@ export default function Navbar({ links }: NavbarProps) {
     );
   });
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        opened &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
+        toggle();
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileMenuRef]);
+
   return (
-    <nav className="w-full h-20 flex flex-row justify-between items-center px-20 bg-slate-900 sticky top-0">
+    <nav
+      className={clsx(
+        "w-full h-20 flex flex-row justify-between items-center bg-slate-900 sticky top-0",
+        isMobile ? "px-8" : "px-20"
+      )}
+    >
       <div>
         <Link href="/">
           <h1
@@ -46,7 +77,30 @@ export default function Navbar({ links }: NavbarProps) {
           </h1>
         </Link>
       </div>
-      <div className="flex flex-row gap-2">{linkElements}</div>
+
+      {isMobile ? (
+        <>
+          <GiHamburgerMenu
+            className="transition-all hover:scale-125"
+            color="#86efac"
+            size={32}
+            onClick={toggle}
+          />
+
+          {opened && (
+            <div
+              ref={mobileMenuRef}
+              className={clsx(
+                "absolute right-0 top-0 w-[50%] h-screen bg-slate-600 flex flex-col justify-center items-center gap-16 shadow-l-md transition-opacity duration-300"
+              )}
+            >
+              {linkElements}
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="flex flex-row gap-20">{linkElements}</div>
+      )}
     </nav>
   );
 }

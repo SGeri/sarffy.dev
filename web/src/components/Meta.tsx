@@ -8,7 +8,7 @@ export interface MetaProps {
 // TODO: Add extra meta tags for better SEO
 
 export default function Meta({
-  title = "sarffy.dev",
+  title = "Sárffy Gergő | Fullstack Web Developer",
   description = "Sárffy Gergő personal portfolio website - Full Stack Web Development",
 }: MetaProps) {
   return (
