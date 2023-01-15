@@ -1,44 +1,25 @@
 import Link from "next/link";
-import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from "react-icons/ai";
-import { SiDiscord, SiSpotify } from "react-icons/si";
+import { IconType } from "react-icons";
 
 // TODO
 // use Icon.text as a small popup on hover
 
-const icons = [
-  {
-    text: "Github",
-    href: "https://github.com/SGeri",
-    component: AiFillGithub,
-  },
-  {
-    text: "LinkedIn",
-    href: "https://www.linkedin.com/in/geri-sarffy/",
-    component: AiFillLinkedin,
-  },
-  {
-    text: "Discord",
-    href: "https://discord.com/SGeri",
-    component: SiDiscord,
-  },
-  {
-    text: "Youtube",
-    href: "https://www.youtube.com/@SGeri",
-    component: AiFillYoutube,
-  },
-  {
-    text: "Spotify",
-    href: "https://open.spotify.com/user/SGeri",
-    component: SiSpotify,
-  },
-];
+export interface SocialsProps {
+  icons: Icon[];
+}
 
-export default function Socials() {
+export interface Icon {
+  text: string;
+  href: string;
+  component: IconType;
+}
+
+export default function Socials({ icons }: SocialsProps) {
   const iconElements = icons.map(({ text, href, component: Icon }, index) => {
     return (
-      <ul>
-        <Link key={index} href={href}>
-          <Icon size={42} color="grey" />
+      <ul key={index} className="hover:translate-x-2 transition-all">
+        <Link href={href}>
+          <Icon size={42} color="white" />
         </Link>
       </ul>
     );

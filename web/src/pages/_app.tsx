@@ -1,10 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from "react-icons/ai";
+import { SiDiscord, SiSpotify } from "react-icons/si";
 import Meta from "@components/Meta";
 import Navbar from "@components/Navbar";
 import Socials from "@components/Socials";
 
-const LINKS = [
+const links = [
   {
     text: "Blog",
     href: "/blog",
@@ -27,14 +29,42 @@ const LINKS = [
   },
 ];
 
+const icons = [
+  {
+    text: "Github",
+    href: "https://github.com/SGeri",
+    component: AiFillGithub,
+  },
+  {
+    text: "LinkedIn",
+    href: "https://www.linkedin.com/in/geri-sarffy/",
+    component: AiFillLinkedin,
+  },
+  {
+    text: "Discord",
+    href: "https://discord.com/SGeri",
+    component: SiDiscord,
+  },
+  {
+    text: "Youtube",
+    href: "https://www.youtube.com/@SGeri",
+    component: AiFillYoutube,
+  },
+  {
+    text: "Spotify",
+    href: "https://open.spotify.com/user/SGeri",
+    component: SiSpotify,
+  },
+];
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Meta />
 
-      <Navbar links={LINKS} />
+      <Navbar links={links} />
 
-      <Socials />
+      <Socials icons={icons} />
 
       <Component {...pageProps} />
     </>
