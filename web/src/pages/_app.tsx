@@ -11,19 +11,19 @@ const links = [
   },
   {
     text: "Technologies",
-    href: "/tech",
+    href: "/#tech",
   },
   {
     text: "Projects",
-    href: "/references",
+    href: "/#references",
   },
   {
     text: "About",
-    href: "/about",
+    href: "/#about",
   },
   {
     text: "Contact",
-    href: "/contact",
+    href: "/#contact",
   },
 ];
 
@@ -35,7 +35,7 @@ const icons = [
   },
   {
     text: "LinkedIn",
-    href: "https://www.linkedin.com/in/geri-sarffy/",
+    href: "https://www.linkedin.com/in/gergő-sárffy-b44870240/",
     component: AiFillLinkedin,
   },
   {
@@ -50,7 +50,7 @@ const icons = [
   },
   {
     text: "Spotify",
-    href: "https://open.spotify.com/user/SGeri",
+    href: "https://open.spotify.com/user/21ahpetfjoq2rjzfsraan72ea",
     component: SiSpotify,
   },
 ];

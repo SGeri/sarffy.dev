@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { IconType } from "react-icons";
 
@@ -26,7 +27,12 @@ export default function Socials({ icons }: SocialsProps) {
   });
 
   return (
-    <li className="w-24 h-auto bottom-0 left-0 absolute flex flex-col items-center content-end p-4 gap-4">
+    <li
+      className={clsx(
+        "w-full h-auto bottom-0 left-0 absolute flex flex-row justify-between items-center content-end p-4 gap-8",
+        "md:w-24 md:flex-col md:px-0"
+      )}
+    >
       {iconElements}
     </li>
   );
