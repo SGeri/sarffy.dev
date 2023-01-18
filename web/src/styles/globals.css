@@ -6,6 +6,10 @@ body {
   @apply bg-slate-900;
 }
 
+.navbar {
+  box-shadow: rgb(2 12 27 / 70%) 0px 10px 30px -10px;
+}
+
 .link-underline {
   border-bottom-width: 0;
   background-image: linear-gradient(transparent, transparent),

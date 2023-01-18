@@ -1,9 +1,11 @@
+import { useEffect, useRef } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { Fira_Code } from "@next/font/google";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useToggle, useWindowSize } from "@utils";
-import { useEffect, useRef } from "react";
+
+// todo: rework modal closing and add animations
 
 const FiraCodeFont = Fira_Code({ weight: "400" });
 
@@ -61,7 +63,7 @@ export default function Navbar({ links }: NavbarProps) {
   return (
     <nav
       className={clsx(
-        "w-full h-20 flex flex-row justify-between items-center bg-slate-900 sticky top-0",
+        "navbar w-full h-20 flex flex-row justify-between items-center bg-slate-900 sticky top-0",
         isMobile ? "px-8" : "px-20"
       )}
     >

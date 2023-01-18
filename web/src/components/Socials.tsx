@@ -29,8 +29,8 @@ export default function Socials({ icons }: SocialsProps) {
   return (
     <li
       className={clsx(
-        "w-full h-auto bottom-0 left-0 absolute flex flex-row justify-between items-center content-end p-4 gap-8",
-        "md:w-24 md:flex-col md:px-0"
+        "w-full h-auto bottom-0 left-0 fixed flex flex-row justify-between items-center content-end p-4 gap-8 bg-slate-700",
+        "md:w-24 md:flex-col md:px-0 md:bg-transparent"
       )}
     >
       {iconElements}

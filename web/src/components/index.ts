@@ -1,3 +1,10 @@
 export { default as Meta } from "./Meta";
+export * from "./Meta";
 export { default as Navbar } from "./Navbar";
+export * from "./Navbar";
 export { default as Socials } from "./Socials";
+export * from "./Socials";
+export { default as Card } from "./Card";
+export * from "./Card";
+export { default as Tag } from "./Tag";
+export * from "./Tag";
