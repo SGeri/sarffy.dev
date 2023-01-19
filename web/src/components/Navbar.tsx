@@ -58,7 +58,7 @@ export default function Navbar({ links }: NavbarProps) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [mobileMenuRef]);
+  }, [mobileMenuRef, opened, toggle]);
 
   return (
     <nav
