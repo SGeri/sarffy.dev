@@ -30,6 +30,7 @@ export default function Navbar({ links }: NavbarProps) {
       <Link
         key={index}
         href={href}
+        scroll={false}
         className={clsx(
           "flex flex-row mr-5 text-sm transition-all hover:scale-[1.15]",
           isMobile && "text-lg",
