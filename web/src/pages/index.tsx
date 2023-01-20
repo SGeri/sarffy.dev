@@ -1,3 +1,4 @@
+import { useState } from "react";
 import clsx from "clsx";
 import { Fira_Code, Noto_Sans } from "@next/font/google";
 import Link from "next/link";
@@ -11,9 +12,30 @@ import {
   SiTailwindcss,
   SiMaterialui,
   SiCss3,
+  SiNodedotjs,
+  SiNestjs,
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiPostgresql,
+  SiGraphql,
+  SiFirebase,
+  SiRedis,
+  SiLinux,
+  SiNginx,
+  SiDocker,
+  SiPortainer,
+  SiGithub,
+  SiCloudflare,
+  SiDigitalocean,
+  SiVercel,
+  SiWordpress,
+  SiTrello,
 } from "react-icons/si";
 import { TbBrandReactNative } from "react-icons/tb";
-import { Card } from "@components";
+import { BsDisplay, BsServer } from "react-icons/bs";
+import { FaHammer, FaAws } from "react-icons/fa";
+import { Card, Button } from "@components";
 
 // todo: better font for title
 // todo: adjust font sizes for mobile
@@ -24,7 +46,7 @@ const FiraCodeBoldFont = Fira_Code({ weight: "600" });
 const NotoSansFont = Noto_Sans({ weight: "400" });
 const NotoSansBoldFont = Noto_Sans({ weight: "700" });
 
-const Tools = [
+const FrontendTools = [
   {
     name: "TypeScript",
     link: "https://www.typescriptlang.org/",
@@ -77,7 +99,137 @@ const Tools = [
   },
 ];
 
+const BackendTools = [
+  {
+    name: "NodeJS",
+    link: "https://nodejs.org/en/",
+    icon: SiNodedotjs,
+  },
+  {
+    name: "NestJS",
+    link: "https://nestjs.com/",
+    icon: SiNestjs,
+  },
+  {
+    name: "Express",
+    link: "https://expressjs.com/",
+    icon: SiExpress,
+  },
+  {
+    name: "MongoDB",
+    link: "https://www.mongodb.com/",
+    icon: SiMongodb,
+  },
+  {
+    name: "MySQL",
+    link: "https://www.mysql.com/",
+    icon: SiMysql,
+  },
+  {
+    name: "PostgreSQL",
+    link: "https://www.postgresql.org/",
+    icon: SiPostgresql,
+  },
+  {
+    name: "Redis",
+    link: "https://redis.io/",
+    icon: SiRedis,
+  },
+  {
+    name: "GraphQL",
+    link: "https://graphql.org/",
+    icon: SiGraphql,
+  },
+  {
+    name: "Firebase",
+    link: "https://firebase.google.com/",
+    icon: SiFirebase,
+  },
+  {
+    name: "AWS Services",
+    link: "https://aws.amazon.com/",
+    icon: FaAws,
+  },
+];
+
+const DevopsTools = [
+  {
+    name: "Linux",
+    link: "https://www.linux.org/",
+    icon: SiLinux,
+  },
+  {
+    name: "Nginx",
+    link: "https://www.nginx.com/",
+    icon: SiNginx,
+  },
+  {
+    name: "Docker",
+    link: "https://www.docker.com/",
+    icon: SiDocker,
+  },
+  {
+    name: "Portainer",
+    link: "https://www.portainer.io/",
+    icon: SiPortainer,
+  },
+  {
+    name: "GitHub",
+    link: "https://github.com/",
+    icon: SiGithub,
+  },
+  {
+    name: "Cloudflare",
+    link: "https://www.cloudflare.com/",
+    icon: SiCloudflare,
+  },
+  {
+    name: "Vercel",
+    link: "https://vercel.com/",
+    icon: SiVercel,
+  },
+  {
+    name: "DigitalOcean",
+    link: "https://www.digitalocean.com/",
+    icon: SiDigitalocean,
+  },
+  {
+    name: "Wordpress",
+    link: "https://wordpress.com/",
+    icon: SiWordpress,
+  },
+  {
+    name: "Trello",
+    link: "https://trello.com/",
+    icon: SiTrello,
+  },
+];
+
+const enum ToolTypes {
+  Frontend = "Frontend",
+  Backend = "Backend",
+  Devops = "DevOps & Other",
+}
+
 export default function Home() {
+  const [toolsSection, setToolsSection] = useState<ToolTypes>(
+    ToolTypes.Frontend
+  );
+
+  let toolsToShow: typeof FrontendTools = [];
+
+  switch (toolsSection) {
+    case ToolTypes.Frontend:
+      toolsToShow = FrontendTools;
+      break;
+    case ToolTypes.Backend:
+      toolsToShow = BackendTools;
+      break;
+    case ToolTypes.Devops:
+      toolsToShow = DevopsTools;
+      break;
+  }
+
   return (
     <>
       <main className="flex flex-col px-8 md:px-24 lg:px-36 min-h-[75vh] items-center justify-center">
@@ -176,7 +328,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5">
-            {Tools.map(({ name, link, icon: Icon }) => (
+            {toolsToShow.map(({ name, link, icon: Icon }) => (
               <div key={name} className="w-44 h-44">
                 <Link
                   href={link}
@@ -194,11 +346,72 @@ export default function Home() {
                 </Link>
               </div>
             ))}
+          </div>
 
-            {/* Create Accordion component & add backend tools with devops category */}
+          <div className="flex flex-row justify-center gap-6">
+            <Button
+              rounded="2xl"
+              bg={
+                toolsSection === ToolTypes.Frontend ? "bg-green-600" : undefined
+              }
+              tooltip={ToolTypes.Frontend}
+              onClick={() => setToolsSection(ToolTypes.Frontend)}
+            >
+              <BsDisplay size={32} color="#cbd5e1" />
+            </Button>
+            <Button
+              rounded="2xl"
+              bg={
+                toolsSection === ToolTypes.Backend ? "bg-green-600" : undefined
+              }
+              tooltip={ToolTypes.Backend}
+              onClick={() => setToolsSection(ToolTypes.Backend)}
+            >
+              <BsServer size={32} color="#cbd5e1" />
+            </Button>
+            <Button
+              rounded="2xl"
+              bg={
+                toolsSection === ToolTypes.Devops ? "bg-green-600" : undefined
+              }
+              tooltip={ToolTypes.Devops}
+              onClick={() => setToolsSection(ToolTypes.Devops)}
+            >
+              <FaHammer size={32} color="#cbd5e1" />
+            </Button>
           </div>
         </section>
-        <section id="references" className=""></section>
+
+        <section id="references" className="">
+          <h3
+            className={clsx(
+              "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
+              FiraCodeBoldFont.className
+            )}
+          >
+            Projects
+          </h3>
+          <div className="max-w-4xl mx-auto">
+            <p
+              className={clsx(
+                "text-center text-lg text-gray-400 my-5",
+                NotoSansFont.className
+              )}
+            >
+              As a Fullstack Web and DevOps developer, I have experience working
+              with a variety of technologies, but most commonly using the React
+              ecosystem. Some of my past projects include building and
+              maintaining web applications using React with Typescript, as well
+              as implementing continuous integration and deployment pipeline
+              using technologies like Docker, Serverless and AWS Services. I
+              have experience in different project methodologies such as Agile,
+              and have a strong understanding of software development best
+              practices, including version control systems and testing.
+              Additionally, I am experienced in optimizing and scaling web
+              applications to handle different amounts of traffic and data.
+            </p>
+          </div>
+        </section>
         <section id="about" className=""></section>
         <section id="contact" className=""></section>
       </main>

@@ -30,3 +30,12 @@ body {
   background-size: 100% 3px;
   background-position: 0 100%;
 }
+
+.tooltip-animation {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+
+.tooltip-animation.active {
+  opacity: 1;
+}
