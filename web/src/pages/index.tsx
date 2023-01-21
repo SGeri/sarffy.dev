@@ -10,11 +10,17 @@ import {
   NotoSansBoldFont,
 } from "@fonts";
 import { Card, Button, useTools, ToolTypes, Projects, Tool } from "@components";
+import { getPosts } from "@utils";
+import { Post } from "@types";
 
 // todo: better font for title
 // todo: adjust font sizes for mobile
 
-export default function Home() {
+interface HomeProps {
+  posts: Post[];
+}
+
+export default function Home({ posts }: HomeProps) {
   const [tools, toolsType, changeTools] = useTools();
 
   return (
@@ -30,7 +36,7 @@ export default function Home() {
             text="In my blog posts you will find information about my personal projects and experiences, as well as my toolset and development environment. I may also share insights and reflections on other areas of interest in the future."
           />
 
-          <BlogsSection />
+          <BlogsSection posts={posts} />
         </section>
 
         <section id="tech" className="min-h-min pt-24">
@@ -147,22 +153,20 @@ const HeroSection = () => (
   </div>
 );
 
-const BlogsSection = () => (
+const BlogsSection = ({ posts }: { posts: Post[] }) => (
   <div className="flex justify-center">
     <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2">
-      {Array(2)
-        .fill(null)
-        .map((_, index) => (
+      {posts.map((post, index) => (
+        <Link key={index} href={"/blog/" + post.slug}>
           <Card
-            key={index}
-            title="The Coldest Sunset"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            image="/images/dummy.webp"
-            imageAlt="Dummy Picture"
-            tags={["#photography", "#travel", "#winter"]}
-            onClick={() => alert("Clicked")}
+            title={post.title}
+            description={post.description}
+            image={post.image}
+            imageAlt={`Number ${index + 1} post display image`}
+            tags={post.tags}
           />
-        ))}
+        </Link>
+      ))}
     </div>
   </div>
 );
@@ -302,3 +306,9 @@ const ContactSection = () => (
     </Link>
   </div>
 );
+
+export async function getStaticProps() {
+  const posts = await getPosts();
+
+  return { props: { posts } } as const;
+}

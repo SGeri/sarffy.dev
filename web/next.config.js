@@ -14,6 +14,13 @@ const nextConfig = {
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback.fs = false;
+    }
+
+    return config;
+  },
 };
 
 module.exports = withMDX(nextConfig);

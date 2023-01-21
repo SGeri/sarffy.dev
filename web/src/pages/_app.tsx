@@ -55,6 +55,8 @@ const icons = [
   },
 ];
 
+// todo add footer for blog and index
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
