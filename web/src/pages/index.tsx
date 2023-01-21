@@ -78,15 +78,26 @@ export default function Home() {
           <ProjectsSection />
         </section>
 
-        <section id="about" className=""></section>
+        <section id="about" className="min-h-min pt-24">
+          <SectionHeader title="About me" />
 
-        <section id="contact" className=""></section>
+          <AboutSection />
+        </section>
+
+        <section id="contact" className="min-h-min py-24">
+          <SectionHeader
+            title="Contact me"
+            text="I am always open to new opportunities and eager to take on new challenges. I am constantly seeking to expand my skill set and grow as a developer. I am confident in my abilities and believe that I can bring value to any project or team. If you are a recruiter or hiring manager looking for a talented and dedicated developer, please feel free to contact me to discuss any potential opportunities. I am open to hearing about any exciting projects or roles that align with my skills and experience."
+          />
+
+          <ContactSection />
+        </section>
       </main>
     </>
   );
 }
 
-const SectionHeader = ({ title, text }: { title: string; text: string }) => (
+const SectionHeader = ({ title, text }: { title: string; text?: string }) => (
   <>
     <h3
       className={clsx(
@@ -96,16 +107,18 @@ const SectionHeader = ({ title, text }: { title: string; text: string }) => (
     >
       {title}
     </h3>
-    <div className="max-w-4xl mx-auto">
-      <p
-        className={clsx(
-          "text-center text-lg text-gray-400 my-5",
-          NotoSansFont.className
-        )}
-      >
-        {text}
-      </p>
-    </div>
+    {text && (
+      <div className="max-w-4xl mx-auto">
+        <p
+          className={clsx(
+            "text-center text-lg text-gray-400 my-5",
+            NotoSansFont.className
+          )}
+        >
+          {text}
+        </p>
+      </div>
+    )}
   </>
 );
 
@@ -223,4 +236,69 @@ const ProjectsSection = () => (
       )
     )}
   </>
+);
+
+const AboutSection = () => (
+  <div className="grid grid-cols-1 lg:grid-cols-2">
+    <div className="flex flex-col justify-center">
+      <h1
+        className={clsx(
+          "text-white text-center text-xl mb-2",
+          FiraCodeBoldFont.className
+        )}
+      >
+        Introduction
+      </h1>
+      <p
+        className={clsx(
+          "text-gray-400 text-justify text-md lg:text-lg max-w-2xl mx-auto",
+          NotoSansFont.className
+        )}
+      >
+        Hi, my name is Gergő Sárffy and I am a full-stack web developer with
+        several years of experience from Hungary. I specialize in building
+        complex web applications from ideas to production-ready solutions. I
+        have a passion for writing clean, readable, and well-documented code. I
+        also have a wealth of experience in the React ecosystem and related
+        packages and frameworks. I am always seeking new challenges and
+        opportunities to grow as a developer and deliver top-notch results for
+        my clients. My goal is to build a career as a lead developer in an
+        innovative and forward-thinking company.
+      </p>
+
+      <div className="flex justify-center">
+        <Link href="/sarffy_gergo_cv2023.jpg">
+          <Button variant="outline">
+            <p className={clsx("text-gray-200", NotoSansBoldFont.className)}>
+              View CV
+            </p>
+          </Button>
+        </Link>
+      </div>
+
+      {/* TODO Previous workplaces */}
+    </div>
+
+    <div className={clsx("flex flex-col justify-center items-center")}>
+      <Image
+        src="/images/person.svg"
+        alt="Picture of the author"
+        className="w-full max-w-lg px-10 m-4"
+        width={1920}
+        height={1080}
+      />
+    </div>
+  </div>
+);
+
+const ContactSection = () => (
+  <div className="flex justify-center">
+    <Link href="mailto:hello@sarffy.dev">
+      <Button variant="outline">
+        <p className={clsx("text-gray-200", NotoSansBoldFont.className)}>
+          Get in touch
+        </p>
+      </Button>
+    </Link>
+  </div>
 );

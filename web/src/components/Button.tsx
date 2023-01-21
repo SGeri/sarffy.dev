@@ -6,20 +6,19 @@ export interface ButtonProps {
   tooltip?: string;
   onClick?: () => void;
   children: ReactNode;
+  className?: string;
   rounded?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
   bg?: string;
 }
 
-export enum ButtonVariants {
-  primary,
-  secondary,
-}
+export type ButtonVariants = "primary" | "outline";
 
 const Button = ({
-  variant = ButtonVariants.primary,
+  variant = "primary",
   tooltip,
   onClick,
   children,
+  className,
   rounded = "md",
   bg = "bg-slate-600",
 }: ButtonProps) => {
@@ -30,9 +29,12 @@ const Button = ({
       className={clsx(
         "max-w-max p-4 m-2",
         "flex justify-center items-center",
+        "transition-all hover:scale-105",
         rounded && `rounded-${rounded}`,
         onClick && "cursor-pointer",
-        bg
+        variant == "primary" && bg,
+        variant == "outline" && "border-2 border-green-500",
+        className
       )}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
