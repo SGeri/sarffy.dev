@@ -9,7 +9,7 @@ import {
   NotoSansFont,
   NotoSansBoldFont,
 } from "@fonts";
-import { Card, Button, useTools, ToolTypes, Projects } from "@components";
+import { Card, Button, useTools, ToolTypes, Projects, Tool } from "@components";
 
 // todo: better font for title
 // todo: adjust font sizes for mobile
@@ -21,107 +21,25 @@ export default function Home() {
     <>
       <main className="flex flex-col px-8 md:px-24 lg:px-36 min-h-[75vh] items-center justify-center">
         <section className="flex items-center mx-auto min-h-[75vh]">
-          <div className="items-start justify-center">
-            <h1
-              className={clsx(
-                "text-xl font-bold text-left text-green-400 py-2",
-                FiraCodeFont.className
-              )}
-            >
-              Hello, my name is
-            </h1>
-            <h2
-              className={clsx(
-                "text-left text-6xl text-gray-200 py-2 tracking-wide leading-tight",
-                NotoSansBoldFont.className
-              )}
-            >
-              SÁRFFY GERGŐ
-            </h2>
-            <h2 className="font-semibold text-left text-4xl text-gray-400 py-2 max-w-3xl">
-              From concept to launch, delivering innovative solutions with
-              precision and efficiency.
-            </h2>
-          </div>
+          <HeroSection />
         </section>
 
         <section id="blog" className="min-h-min mx-auto">
-          <h3
-            className={clsx(
-              "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
-              FiraCodeBoldFont.className
-            )}
-          >
-            Recent posts
-          </h3>
-          <div className="max-w-4xl mx-auto">
-            <p
-              className={clsx(
-                "text-center text-lg text-gray-400 mb-5",
-                NotoSansFont.className
-              )}
-            >
-              In my blog posts you will find information about my personal
-              projects and experiences, as well as my toolset and development
-              environment. I may also share insights and reflections on other
-              areas of interest in the future.
-            </p>
-          </div>
+          <SectionHeader
+            title="Recent posts"
+            text="In my blog posts you will find information about my personal projects and experiences, as well as my toolset and development environment. I may also share insights and reflections on other areas of interest in the future."
+          />
 
-          <div className="flex justify-center">
-            <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2">
-              <BlogsSection />
-            </div>
-          </div>
+          <BlogsSection />
         </section>
 
         <section id="tech" className="min-h-min pt-24">
-          <h3
-            className={clsx(
-              "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
-              FiraCodeBoldFont.className
-            )}
-          >
-            Technology Stack
-          </h3>
-          <div className="max-w-4xl mx-auto">
-            <p
-              className={clsx(
-                "text-center text-lg text-gray-400 my-5",
-                NotoSansFont.className
-              )}
-            >
-              As a full stack developer, my role is to build, test and deploy
-              web applications from start to finish. I work on both front-end
-              and back-end aspects of the application. I handle the deployment
-              and maintenance of the application, making sure it runs smoothly
-              and efficiently. I also communicate with clients to understand
-              their requirements, and provide solutions and support throughout
-              the development process. I am also familiar with DevOps
-              methodologies to ensure efficient and robust application delivery.
-            </p>
-          </div>
+          <SectionHeader
+            title="Technology Stack"
+            text="As a full stack developer, my role is to build, test and deploy web applications from start to finish. I work on both front-end and back-end aspects of the application. I handle the deployment and maintenance of the application, making sure it runs smoothly and efficiently. I also communicate with clients to understandtheir requirements, and provide solutions and support throughout the development process. I am also familiar with DevOps methodologies to ensure efficient and robust application delivery."
+          />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5">
-            {tools.map(({ name, link, icon: Icon }) => (
-              <div key={name} className="w-44 h-44 mx-auto">
-                <Link
-                  href={link}
-                  className="w-full h-full flex flex-col justify-center items-center rounded-2xl navbar transition-all hover:scale-[1.15] cursor-pointer mx-auto"
-                >
-                  <Icon size={92} color="#64748b" />
-                  <p
-                    className={clsx(
-                      "text-lg text-slate-500 m-2",
-                      NotoSansFont.className
-                    )}
-                  >
-                    {name}
-                  </p>
-                </Link>
-              </div>
-            ))}
-          </div>
+          <ToolsSection tools={tools} />
 
           <div className="flex flex-row justify-center gap-6">
             <Button
@@ -152,60 +70,111 @@ export default function Home() {
         </section>
 
         <section id="references" className="min-h-min pt-24">
-          <h3
-            className={clsx(
-              "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
-              FiraCodeBoldFont.className
-            )}
-          >
-            Projects
-          </h3>
-          <div className="max-w-4xl mx-auto">
-            <p
-              className={clsx(
-                "text-center text-lg text-gray-400 my-5",
-                NotoSansFont.className
-              )}
-            >
-              As a Fullstack Web and DevOps developer, I have experience working
-              with a variety of technologies, but most commonly using the React
-              ecosystem. Some of my past projects include building and
-              maintaining web applications using React with Typescript, as well
-              as implementing continuous integration and deployment pipeline
-              using technologies like Docker, Serverless and AWS Services. I
-              have experience in different project methodologies such as Agile,
-              and have a strong understanding of software development best
-              practices, including version control systems and testing.
-              Additionally, I am experienced in optimizing and scaling web
-              applications to handle different amounts of traffic and data.
-            </p>
-          </div>
+          <SectionHeader
+            title="Projects"
+            text="As a Fullstack Web and DevOps developer, I have experience working with a variety of technologies, but most commonly using the React ecosystem. Some of my past projects include building and maintaining web applications using React with Typescript, as well as implementing continuous integration and deployment pipeline using technologies like Docker, Serverless and AWS Services. I have experience in different project methodologies such as Agile, and have a strong understanding of software development best practices, including version control systems and testing. Additionally, I am experienced in optimizing and scaling web applications to handle different amounts of traffic and data."
+          />
 
           <ProjectsSection />
         </section>
+
         <section id="about" className=""></section>
+
         <section id="contact" className=""></section>
       </main>
     </>
   );
 }
 
-const BlogsSection = () => (
+const SectionHeader = ({ title, text }: { title: string; text: string }) => (
   <>
-    {Array(2)
-      .fill(null)
-      .map((_, index) => (
-        <Card
-          key={index}
-          title="The Coldest Sunset"
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-          image="/images/dummy.webp"
-          imageAlt="Dummy Picture"
-          tags={["#photography", "#travel", "#winter"]}
-          onClick={() => alert("Clicked")}
-        />
-      ))}
+    <h3
+      className={clsx(
+        "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
+        FiraCodeBoldFont.className
+      )}
+    >
+      {title}
+    </h3>
+    <div className="max-w-4xl mx-auto">
+      <p
+        className={clsx(
+          "text-center text-lg text-gray-400 my-5",
+          NotoSansFont.className
+        )}
+      >
+        {text}
+      </p>
+    </div>
   </>
+);
+
+const HeroSection = () => (
+  <div className="items-start justify-center">
+    <h1
+      className={clsx(
+        "text-xl font-bold text-left text-green-400 py-2",
+        FiraCodeFont.className
+      )}
+    >
+      Hello, my name is
+    </h1>
+    <h2
+      className={clsx(
+        "text-left text-6xl text-gray-200 py-2 tracking-wide leading-tight",
+        NotoSansBoldFont.className
+      )}
+    >
+      SÁRFFY GERGŐ
+    </h2>
+    <h2 className="font-semibold text-left text-4xl text-gray-400 py-2 max-w-3xl">
+      From concept to launch, delivering innovative solutions with precision and
+      efficiency.
+    </h2>
+  </div>
+);
+
+const BlogsSection = () => (
+  <div className="flex justify-center">
+    <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2">
+      {Array(2)
+        .fill(null)
+        .map((_, index) => (
+          <Card
+            key={index}
+            title="The Coldest Sunset"
+            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
+            image="/images/dummy.webp"
+            imageAlt="Dummy Picture"
+            tags={["#photography", "#travel", "#winter"]}
+            onClick={() => alert("Clicked")}
+          />
+        ))}
+    </div>
+  </div>
+);
+
+const ToolsSection = ({ tools }: { tools: Tool[] }) => (
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5">
+    {tools.map(({ name, link, icon: Icon }) => (
+      <div key={name} className="w-44 h-44 mx-auto">
+        <Link
+          href={link}
+          className="w-full h-full flex flex-col justify-center items-center rounded-2xl navbar transition-all hover:scale-[1.15] cursor-pointer mx-auto"
+        >
+          <Icon size={92} color="#64748b" />
+          <p
+            className={clsx(
+              "text-lg text-slate-500 m-2",
+              NotoSansFont.className
+            )}
+          >
+            {name}
+          </p>
+        </Link>
+      </div>
+    ))}
+  </div>
 );
 
 const ProjectsSection = () => (
