@@ -1,7 +1,8 @@
 import fs from "fs";
+import path from "path";
 import { Post } from "../types";
 
-const BLOGS_PATH = "../pages/blog/";
+const BLOGS_DIR = path.join(process.cwd(), "src", "pages", "blog");
 
 export default async function getPosts() {
   const posts = await readBlogFiles();
@@ -10,18 +11,14 @@ export default async function getPosts() {
 }
 
 async function readBlogFiles(): Promise<Post[]> {
-  // todo use path.join
-  let fileNames = fs.readdirSync(
-    "E:\\Solutions\\Portfolio\\web\\src\\pages\\blog"
-  );
+  let fileNames = fs.readdirSync(BLOGS_DIR);
 
   fileNames = fileNames.filter((filename) => /\.mdx$/.test(filename));
 
   const tasks = fileNames.map(async (file) => {
-    // todo use path.join
     const {
       options: { title, description, image, tags },
-    } = await require(`../pages/blog/${file}`);
+    } = await import(`../pages/blog/${file}`);
 
     return {
       title,
