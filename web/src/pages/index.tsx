@@ -1,234 +1,21 @@
-import { useState } from "react";
 import clsx from "clsx";
-import { Fira_Code, Noto_Sans } from "@next/font/google";
 import Link from "next/link";
-import {
-  SiTypescript,
-  SiJavascript,
-  SiReact,
-  SiNextdotjs,
-  SiRedux,
-  SiReactrouter,
-  SiTailwindcss,
-  SiMaterialui,
-  SiCss3,
-  SiNodedotjs,
-  SiNestjs,
-  SiExpress,
-  SiMongodb,
-  SiMysql,
-  SiPostgresql,
-  SiGraphql,
-  SiFirebase,
-  SiRedis,
-  SiLinux,
-  SiNginx,
-  SiDocker,
-  SiPortainer,
-  SiGithub,
-  SiCloudflare,
-  SiDigitalocean,
-  SiVercel,
-  SiWordpress,
-  SiTrello,
-} from "react-icons/si";
-import { TbBrandReactNative } from "react-icons/tb";
+import Image from "next/image";
+import { FaHammer } from "react-icons/fa";
 import { BsDisplay, BsServer } from "react-icons/bs";
-import { FaHammer, FaAws } from "react-icons/fa";
-import { Card, Button } from "@components";
+import {
+  FiraCodeFont,
+  FiraCodeBoldFont,
+  NotoSansFont,
+  NotoSansBoldFont,
+} from "@fonts";
+import { Card, Button, useTools, ToolTypes, Projects } from "@components";
 
 // todo: better font for title
 // todo: adjust font sizes for mobile
-// todo: divide into smaller components for sections
-
-const FiraCodeFont = Fira_Code({ weight: "400" });
-const FiraCodeBoldFont = Fira_Code({ weight: "600" });
-const NotoSansFont = Noto_Sans({ weight: "400" });
-const NotoSansBoldFont = Noto_Sans({ weight: "700" });
-
-const FrontendTools = [
-  {
-    name: "TypeScript",
-    link: "https://www.typescriptlang.org/",
-    icon: SiTypescript,
-  },
-  {
-    name: "JavaScript",
-    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    icon: SiJavascript,
-  },
-  {
-    name: "Next.js",
-    link: "https://nextjs.org/",
-    icon: SiNextdotjs,
-  },
-  {
-    name: "React",
-    link: "https://reactjs.org/",
-    icon: SiReact,
-  },
-  {
-    name: "React Native",
-    link: "https://reactnative.dev/",
-    icon: TbBrandReactNative,
-  },
-  {
-    name: "Redux",
-    link: "https://redux.js.org/",
-    icon: SiRedux,
-  },
-  {
-    name: "Redux Router",
-    link: "https://reactrouter.com/",
-    icon: SiReactrouter,
-  },
-  {
-    name: "CSS",
-    link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-    icon: SiCss3,
-  },
-  {
-    name: "Tailwind CSS",
-    link: "https://tailwindcss.com/",
-    icon: SiTailwindcss,
-  },
-  {
-    name: "Material UI",
-    link: "https://material-ui.com/",
-    icon: SiMaterialui,
-  },
-];
-
-const BackendTools = [
-  {
-    name: "NodeJS",
-    link: "https://nodejs.org/en/",
-    icon: SiNodedotjs,
-  },
-  {
-    name: "NestJS",
-    link: "https://nestjs.com/",
-    icon: SiNestjs,
-  },
-  {
-    name: "Express",
-    link: "https://expressjs.com/",
-    icon: SiExpress,
-  },
-  {
-    name: "MongoDB",
-    link: "https://www.mongodb.com/",
-    icon: SiMongodb,
-  },
-  {
-    name: "MySQL",
-    link: "https://www.mysql.com/",
-    icon: SiMysql,
-  },
-  {
-    name: "PostgreSQL",
-    link: "https://www.postgresql.org/",
-    icon: SiPostgresql,
-  },
-  {
-    name: "Redis",
-    link: "https://redis.io/",
-    icon: SiRedis,
-  },
-  {
-    name: "GraphQL",
-    link: "https://graphql.org/",
-    icon: SiGraphql,
-  },
-  {
-    name: "Firebase",
-    link: "https://firebase.google.com/",
-    icon: SiFirebase,
-  },
-  {
-    name: "AWS Services",
-    link: "https://aws.amazon.com/",
-    icon: FaAws,
-  },
-];
-
-const DevopsTools = [
-  {
-    name: "Linux",
-    link: "https://www.linux.org/",
-    icon: SiLinux,
-  },
-  {
-    name: "Nginx",
-    link: "https://www.nginx.com/",
-    icon: SiNginx,
-  },
-  {
-    name: "Docker",
-    link: "https://www.docker.com/",
-    icon: SiDocker,
-  },
-  {
-    name: "Portainer",
-    link: "https://www.portainer.io/",
-    icon: SiPortainer,
-  },
-  {
-    name: "GitHub",
-    link: "https://github.com/",
-    icon: SiGithub,
-  },
-  {
-    name: "Cloudflare",
-    link: "https://www.cloudflare.com/",
-    icon: SiCloudflare,
-  },
-  {
-    name: "Vercel",
-    link: "https://vercel.com/",
-    icon: SiVercel,
-  },
-  {
-    name: "DigitalOcean",
-    link: "https://www.digitalocean.com/",
-    icon: SiDigitalocean,
-  },
-  {
-    name: "Wordpress",
-    link: "https://wordpress.com/",
-    icon: SiWordpress,
-  },
-  {
-    name: "Trello",
-    link: "https://trello.com/",
-    icon: SiTrello,
-  },
-];
-
-const enum ToolTypes {
-  Frontend = "Frontend",
-  Backend = "Backend",
-  Devops = "DevOps & Other",
-}
 
 export default function Home() {
-  const [toolsSection, setToolsSection] = useState<ToolTypes>(
-    ToolTypes.Frontend
-  );
-
-  let toolsToShow: typeof FrontendTools = [];
-
-  switch (toolsSection) {
-    case ToolTypes.Frontend:
-      toolsToShow = FrontendTools;
-      break;
-    case ToolTypes.Backend:
-      toolsToShow = BackendTools;
-      break;
-    case ToolTypes.Devops:
-      toolsToShow = DevopsTools;
-      break;
-  }
+  const [tools, toolsType, changeTools] = useTools();
 
   return (
     <>
@@ -258,7 +45,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="blog" className="min-h-min mx-auto mb-24">
+        <section id="blog" className="min-h-min mx-auto">
           <h3
             className={clsx(
               "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
@@ -283,24 +70,12 @@ export default function Home() {
 
           <div className="flex justify-center">
             <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2">
-              {Array(2)
-                .fill(null)
-                .map((_, index) => (
-                  <Card
-                    key={index}
-                    title="The Coldest Sunset"
-                    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-                    image="/images/dummy.webp"
-                    imageAlt="Dummy Picture"
-                    tags={["#photography", "#travel", "#winter"]}
-                    onClick={() => alert("Clicked")}
-                  />
-                ))}
+              <BlogsSection />
             </div>
           </div>
         </section>
 
-        <section id="tech" className="min-h-min mb-24">
+        <section id="tech" className="min-h-min pt-24">
           <h3
             className={clsx(
               "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
@@ -328,8 +103,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 my-5">
-            {toolsToShow.map(({ name, link, icon: Icon }) => (
-              <div key={name} className="w-44 h-44">
+            {tools.map(({ name, link, icon: Icon }) => (
+              <div key={name} className="w-44 h-44 mx-auto">
                 <Link
                   href={link}
                   className="w-full h-full flex flex-col justify-center items-center rounded-2xl navbar transition-all hover:scale-[1.15] cursor-pointer mx-auto"
@@ -351,38 +126,32 @@ export default function Home() {
           <div className="flex flex-row justify-center gap-6">
             <Button
               rounded="2xl"
-              bg={
-                toolsSection === ToolTypes.Frontend ? "bg-green-600" : undefined
-              }
+              bg={toolsType === ToolTypes.Frontend ? "bg-green-600" : undefined}
               tooltip={ToolTypes.Frontend}
-              onClick={() => setToolsSection(ToolTypes.Frontend)}
+              onClick={() => changeTools(ToolTypes.Frontend)}
             >
               <BsDisplay size={32} color="#cbd5e1" />
             </Button>
             <Button
               rounded="2xl"
-              bg={
-                toolsSection === ToolTypes.Backend ? "bg-green-600" : undefined
-              }
+              bg={toolsType === ToolTypes.Backend ? "bg-green-600" : undefined}
               tooltip={ToolTypes.Backend}
-              onClick={() => setToolsSection(ToolTypes.Backend)}
+              onClick={() => changeTools(ToolTypes.Backend)}
             >
               <BsServer size={32} color="#cbd5e1" />
             </Button>
             <Button
               rounded="2xl"
-              bg={
-                toolsSection === ToolTypes.Devops ? "bg-green-600" : undefined
-              }
+              bg={toolsType === ToolTypes.Devops ? "bg-green-600" : undefined}
               tooltip={ToolTypes.Devops}
-              onClick={() => setToolsSection(ToolTypes.Devops)}
+              onClick={() => changeTools(ToolTypes.Devops)}
             >
               <FaHammer size={32} color="#cbd5e1" />
             </Button>
           </div>
         </section>
 
-        <section id="references" className="">
+        <section id="references" className="min-h-min pt-24">
           <h3
             className={clsx(
               "text-center text-3xl text-green-500 mb-1 font-bold tracking-widest leading-tight",
@@ -411,6 +180,8 @@ export default function Home() {
               applications to handle different amounts of traffic and data.
             </p>
           </div>
+
+          <ProjectsSection />
         </section>
         <section id="about" className=""></section>
         <section id="contact" className=""></section>
@@ -418,3 +189,69 @@ export default function Home() {
     </>
   );
 }
+
+const BlogsSection = () => (
+  <>
+    {Array(2)
+      .fill(null)
+      .map((_, index) => (
+        <Card
+          key={index}
+          title="The Coldest Sunset"
+          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
+          image="/images/dummy.webp"
+          imageAlt="Dummy Picture"
+          tags={["#photography", "#travel", "#winter"]}
+          onClick={() => alert("Clicked")}
+        />
+      ))}
+  </>
+);
+
+const ProjectsSection = () => (
+  <>
+    {Projects.map(
+      ({ name, link, project, image, imageAlt, description }, index) => (
+        <div key={index} className="grid grid-cols-1 lg:grid-cols-2">
+          <Link
+            className="transition-all hover:scale-105 cursor-pointer m-10"
+            href={link}
+          >
+            <Image
+              src={image}
+              alt={imageAlt}
+              className="w-full aspect-video border-2 border-cyan-200 rounded"
+              width={1920}
+              height={1080}
+            />
+          </Link>
+
+          <div
+            className={clsx("flex flex-col justify-center", {
+              "lg:-order-1": index % 2 == 1,
+            })}
+          >
+            <Link href={project}>
+              <h1
+                className={clsx(
+                  "text-white text-center text-xl mb-2",
+                  FiraCodeBoldFont.className
+                )}
+              >
+                {name}
+              </h1>
+            </Link>
+            <p
+              className={clsx(
+                "text-gray-400 text-justify text-md lg:text-lg max-w-2xl mx-auto",
+                NotoSansFont.className
+              )}
+            >
+              {description}
+            </p>
+          </div>
+        </div>
+      )
+    )}
+  </>
+);

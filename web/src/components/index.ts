@@ -14,3 +14,5 @@ export { default as BlogPost } from "./BlogPost";
 export * from "./BlogPost";
 export { default as Button } from "./Button";
 export * from "./Button";
+export * from "./Tools";
+export * from "./Projects";

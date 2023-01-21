@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["./src/components"],
+      "@fonts": ["./src/fonts"],
       "@utils": ["./src/utils"]
     }
   },

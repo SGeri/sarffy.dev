@@ -1,13 +1,11 @@
 import { useEffect, useRef } from "react";
 import clsx from "clsx";
 import Link from "next/link";
-import { Fira_Code } from "@next/font/google";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FiraCodeFont } from "@fonts";
 import { useToggle, useWindowSize } from "@utils";
 
 // todo: rework modal closing and add animations
-
-const FiraCodeFont = Fira_Code({ weight: "400" });
 
 export interface NavbarProps {
   links: Link[];

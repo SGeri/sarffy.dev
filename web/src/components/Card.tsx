@@ -32,8 +32,8 @@ const Card = ({
       src={image}
       alt={imageAlt}
       className="w-full"
-      width={192}
-      height={108}
+      width={1600}
+      height={900}
     />
 
     <div className="px-6 py-4">
