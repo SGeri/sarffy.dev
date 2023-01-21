@@ -4,6 +4,8 @@ export { default as Navbar } from "./Navbar";
 export * from "./Navbar";
 export { default as Socials } from "./Socials";
 export * from "./Socials";
+export { default as Footer } from "./Footer";
+export * from "./Footer";
 export { default as Card } from "./Card";
 export * from "./Card";
 export { default as Tag } from "./Tag";

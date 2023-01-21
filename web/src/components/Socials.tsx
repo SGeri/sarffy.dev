@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 
 // TODO
 // use Icon.text as a small popup on hover
+// fix social links
 
 export interface SocialsProps {
   icons: Icon[];

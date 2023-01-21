@@ -255,7 +255,7 @@ const AboutSection = () => (
       </h1>
       <p
         className={clsx(
-          "text-gray-400 text-justify text-md lg:text-lg max-w-2xl mx-auto",
+          "text-gray-400 text-justify text-md lg:text-lg max-w-2xl mx-auto mb-2",
           NotoSansFont.className
         )}
       >
@@ -271,7 +271,11 @@ const AboutSection = () => (
       </p>
 
       <div className="flex justify-center">
-        <Link href="/sarffy_gergo_cv2023.jpg">
+        <Link
+          href="/sarffy_gergo_cv2023.jpg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button variant="outline">
             <p className={clsx("text-gray-200", NotoSansBoldFont.className)}>
               View CV

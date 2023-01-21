@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from "react-icons/ai";
 import { SiDiscord, SiSpotify } from "react-icons/si";
-import { Meta, Navbar, Socials } from "@components";
+import { Meta, Navbar, Socials, Footer } from "@components";
 
 const links = [
   {
@@ -55,7 +55,12 @@ const icons = [
   },
 ];
 
-// todo add footer for blog and index
+// todo add footer for blog
+// add nicer scroll bar
+// add animations on load and on scroll
+// interactive sticky navbar?
+// add global loader for page transitions?
+// add translations?
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -65,6 +70,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <Navbar links={links} />
 
       <Component {...pageProps} />
+
+      <Footer />
 
       <Socials icons={icons} />
     </>
