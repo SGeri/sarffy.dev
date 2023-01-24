@@ -5,8 +5,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FiraCodeFont } from "@fonts";
 import { useToggle, useWindowSize } from "@utils";
 
-// todo: rework modal closing and add animations
-
 export interface NavbarProps {
   links: Link[];
 }
@@ -18,6 +16,7 @@ interface Link {
 
 export default function Navbar({ links }: NavbarProps) {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const burgerRef = useRef<HTMLDivElement>(null);
   const [opened, toggle] = useToggle(false);
   const { isMobile } = useWindowSize();
 
@@ -46,7 +45,9 @@ export default function Navbar({ links }: NavbarProps) {
       if (
         opened &&
         mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target as Node)
+        burgerRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !burgerRef.current.contains(event.target as Node)
       ) {
         toggle();
       }
@@ -81,23 +82,24 @@ export default function Navbar({ links }: NavbarProps) {
 
       {isMobile ? (
         <>
-          <GiHamburgerMenu
-            className="transition-all hover:scale-125"
-            color="#86efac"
-            size={32}
-            onClick={toggle}
-          />
+          <div ref={burgerRef} className="z-10">
+            <GiHamburgerMenu
+              className="transition-all hover:scale-125"
+              color="#86efac"
+              size={32}
+              onClick={toggle}
+            />
+          </div>
 
-          {opened && (
-            <div
-              ref={mobileMenuRef}
-              className={clsx(
-                "absolute right-0 top-0 w-[50%] h-screen bg-slate-600 flex flex-col justify-center items-center gap-16 shadow-l-md transition-opacity duration-300"
-              )}
-            >
-              {linkElements}
-            </div>
-          )}
+          <div
+            ref={mobileMenuRef}
+            className={clsx(
+              "navbar absolute right-0 top-0 w-[50%] h-screen bg-slate-700 flex flex-col justify-center items-center gap-16 shadow-l-md overflow-y-auto transform transition-transform duration-500 ease-in-out",
+              opened ? "translate-x-0" : "translate-x-full"
+            )}
+          >
+            {linkElements}
+          </div>
         </>
       ) : (
         <div className="flex flex-row gap-20">{linkElements}</div>
