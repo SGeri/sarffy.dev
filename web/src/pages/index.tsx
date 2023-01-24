@@ -13,8 +13,7 @@ import { Card, Button, useTools, ToolTypes, Projects, Tool } from "@components";
 import { getPosts } from "@utils";
 import { Post } from "@types";
 
-// todo: better font for title
-// todo: adjust font sizes for mobile
+// update cv image to the new one
 
 interface HomeProps {
   posts: Post[];
@@ -146,7 +145,7 @@ const HeroSection = () => (
     >
       SÁRFFY GERGŐ
     </h2>
-    <h2 className="font-semibold text-left text-4xl text-gray-400 py-2 max-w-3xl">
+    <h2 className="font-semibold text-left text-3xl text-gray-400 py-2 max-w-3xl">
       From concept to launch, delivering innovative solutions with precision and
       efficiency.
     </h2>
@@ -239,6 +238,15 @@ const ProjectsSection = () => (
         </div>
       )
     )}
+    <div className="flex justify-center">
+      <Link href="https://github.com/SGeri">
+        <Button variant="outline">
+          <p className={clsx("text-gray-200", NotoSansFont.className)}>
+            View Github Profile
+          </p>
+        </Button>
+      </Link>
+    </div>
   </>
 );
 
@@ -277,7 +285,7 @@ const AboutSection = () => (
           rel="noopener noreferrer"
         >
           <Button variant="outline">
-            <p className={clsx("text-gray-200", NotoSansBoldFont.className)}>
+            <p className={clsx("text-gray-200", NotoSansFont.className)}>
               View CV
             </p>
           </Button>
@@ -303,7 +311,7 @@ const ContactSection = () => (
   <div className="flex justify-center">
     <Link href="mailto:hello@sarffy.dev">
       <Button variant="outline">
-        <p className={clsx("text-gray-200", NotoSansBoldFont.className)}>
+        <p className={clsx("text-gray-200", NotoSansFont.className)}>
           Get in touch
         </p>
       </Button>

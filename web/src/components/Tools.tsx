@@ -200,7 +200,7 @@ export interface Tool {
 export enum ToolTypes {
   Frontend = "Frontend",
   Backend = "Backend",
-  Devops = "DevOps & Other",
+  Devops = "DevOps",
 }
 
 export function useTools() {

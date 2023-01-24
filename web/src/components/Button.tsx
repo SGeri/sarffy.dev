@@ -43,7 +43,7 @@ const Button = ({
       {tooltip && (
         <div
           className={clsx(
-            "absolute inline-block -translate-y-14 px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm bg-gray-700 transition-opacity",
+            "w-min absolute inline-block -translate-y-14 px-3 py-2 text-sm font-medium text-white text-center rounded-lg shadow-sm bg-gray-700 transition-opacity",
             hover ? "opacity-100" : "opacity-0"
           )}
         >
