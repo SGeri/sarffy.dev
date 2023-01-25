@@ -1,23 +1,24 @@
+import clsx from "clsx";
 import { InstrictBlogElementType } from ".";
 
 const HeadingClassNames =
-  "text-4xl font-bold text-gray-200 py-2 tracking-wide leading-tight text-center";
+  "font-bold text-gray-200 py-2 tracking-wide leading-tight text-center";
 
 const Heading = {
   H1: ({ children }: InstrictBlogElementType) => (
-    <h1 className={HeadingClassNames}>{children}</h1>
+    <h1 className={clsx(HeadingClassNames, "text-4xl")}>{children}</h1>
   ),
   H2: ({ children }: InstrictBlogElementType) => (
-    <h2 className={HeadingClassNames}>{children}</h2>
+    <h2 className={clsx(HeadingClassNames, "text-2xl")}>{children}</h2>
   ),
   H3: ({ children }: InstrictBlogElementType) => (
-    <h3 className={HeadingClassNames}>{children}</h3>
+    <h3 className={clsx(HeadingClassNames, "text-xl")}>{children}</h3>
   ),
   H4: ({ children }: InstrictBlogElementType) => (
-    <h4 className={HeadingClassNames}>{children}</h4>
+    <h4 className={clsx(HeadingClassNames, "text-lg")}>{children}</h4>
   ),
   H5: ({ children }: InstrictBlogElementType) => (
-    <h5 className={HeadingClassNames}>{children}</h5>
+    <h5 className={clsx(HeadingClassNames, "text-md")}>{children}</h5>
   ),
 };
 

@@ -1,0 +1,116 @@
+import Link from "next/link";
+import { BlogPost, Image } from "@components";
+
+export const options = {
+  title: "Hogyan lettem 15 évesen szoftverfejlesztő?",
+  description:
+    "Minden jó fejlesztőnek van egy története, ahonnan ő elindult. Hát íme az enyém!",
+  image: "/images/sw-dev-15-preview.jpg",
+  tags: ["#HU", "#SoftwareEngineer", "#Age15"],
+  meta: {
+    title: "Hogyan lettem 15 évesen szoftverfejlesztő?",
+  },
+};
+
+export default ({ children }) => (
+  <BlogPost meta={options.meta}>{children}</BlogPost>
+);
+
+# Hogyan lettem 15 évesen szoftverfejlesztő?
+
+## De honnan is indult mindez?
+
+Kezdjük az elején, azt hiszem, mindenkinek megvannak az emlékeim, ahogyan a barátaival játszik és egyszer csak felvillan az ötlet, hogy "jó-jó, de mi lenne, ha...".
+Ez a pont nálam kis harmadikosként jött el, amikoris akkori osztálytársaimmal egész éjjel toltuk a **Minecraftot**. Aztán egyszer csak felmerült a kérdés,
+hogy mi lenne, ha **a saját ötleteink**, amiket vártunk a játékba, de a fejlesztők sosem készítettek el, életre kelnének és játszhatnánk velük.
+
+Az első ilyen pillanat számomra az volt, amikor a közös szerverünkön (akkor még Hamachival :)) egy rejtett házat építhetnénk egy hegy falába. Igen,
+ekkor ismerkedtem meg először a redstone-nal, ami számomra igen meghatározó emlék, hiszen ez vezetett ahhoz, hogy most ezt a szöveget írjam.
+Néhány nap videó nézegetés után (innen is köszi Sirius ;)) sikerült megépíteni az első 2x2-es pistonajtót, amivel a lehetett bejutni egy "titkos" gomb segítségével.
+
+### Íme a titkos gomb:
+
+<Image src="/images/minecraft_button.PNG" alt="Hidden Minecraft Button" />
+
+Telt az idő, már egészen összetett rendszereket készítettem, amikkel a szerveren kívül is játszhattam.
+Az ikonikus <Link className="text-white cursor-pointer" href="https://www.youtube.com/watch?v=mpnQNM7G6WY">item szelektáló</Link> egy olyan mérföldkő volt,
+amire máig emlékszem, hogy napokon keresztül építettük túlélőmódban, hogy ne kelljen folyamatosan rendet tartani.
+
+Ekkor találtam rá a máig népszerű (...maradjunk annyiban, hogy létezik még ilyen!) kalandpályák műfajára, aminek ékes szószólója volt JamesMC és Chabinho.
+Utóbbin keresztül jutottam el a legendás commandblock senseihez, <Link className="text-white cursor-pointer" href="https://www.youtube.com/@Csabusa">Csabusához</Link>,
+aki a mai napig készíti a jobbnál jobb pályákat. Oly annyira megtetszett ez a műfaj, hogy én is megpróbálkoztam útmutató videók készítésével úgy, hogy igazából fogalmam
+sem volt az egészről. Úgy gondolom, hogy azzal tanultam a legtöbbet, hogy megpróbáltam átadni másoknak azt a csekély tudásomat, ami akkor volt.
+
+Itt egy archív kimerevített képkocka **2015-ből**, ahol éppen tudásomat demonstrálom. ...és igen, Bandicam.
+
+<Image src="/images/minecraft_cmd_blocks.PNG" alt="Minecraft Command Blocks" />
+
+Ezek a videók sajnos már nem találhatóak meg az akkori csatornámon, de hát valahol mindenkinek el kell kezdeni, nos, nekem ez volt az.
+A parancsblokkok voltak az első olyan eszközök, amikkel már-már a programozást súroltuk, talán a kreatív játék ezen formáját már annak is hívhatjuk.
+
+Ugrunk az időben, majd elérünk a parancsblokkos korszak végéig. Ugyan a command blockok és a játékon belüli rendszerek remek formái voltak a kreativitásunk szabadon
+eresztéséhez, de előbb-utóbb eljön az a pillanat, amikor ki akarunk lépni abból a keretrendszerből, amit ezek az eszközök számunkra lehetővé tesznek:
+És akkor itt jönnek képbe a **Minecraft Spigot** pluginok **Java**-val való programozásának.
+
+<div className="flex flex-row gap-0 my-8">
+  <Image src="/images/spigot.png" alt="SpigotMC Logo" />
+  <Image src="/images/java.png" alt="Java Logo" />
+</div>
+
+## Programozás? Mekkora móka!
+
+Azt hiszem, ez az első pillanat, ahol már tényleg nevezhetjük programozásnak ezt a hobbit. Gyakorlatilag egy új világ nyílt meg előttem azzal, hogy bármilyen
+fejlesztői eszközhöz hozzá tudtam férni, amit a játék motorja lehetővé tett nekünk. Természetesen az első pluginom lépésről lépésre egy Youtube videó alapján
+készítettem és biztos vagyok benne, hogy ezzel nem vagyok egyedül.
+
+Számtalan órát töltöttem el az akkori legdivatosabb Java IDE-ben, az **Eclipse**-ben. Egyre gyakrabban kezdtem el találkozni azzal a jelenséggel, hogy egy-egy problémát,
+amit szerettem volna megoldani már előttem több ezren megoldottak. Egyrészt ez elszomorított, mert így nem találhattam fel a spanyolviaszt, másrészt adott
+egy kiindulási alapot, hogy hogyan érdemes hozzálátni egy egyszerűbb algoritmusnak, amiből a végén egy játszható végeredmény lesz.
+
+Egy pillanatra álljunk meg és adjunk hálát, hogy ilyen eszközöket adtak a játékosok kezébe és gyakorlatilag elkészítették a saját verziójukat a játékról.
+
+<Image
+  src="/images/eclipse.png"
+  alt="A picture of a screenshot of the Eclipse IDE"
+/>
+
+## Közösségépítés, avagy szerverbarkácsolás
+
+A következő szakaszt szerverbarkácsolásnak fogom hívni, mert ez remekül összefoglalja a szenvedést, ami egy vezetőségi csapat összeszedésével, szerver
+felépítésével, majd hirdetésével és az érdeklődés fenntartásával járt. 4-5. osztályban a keménymaggal (innentől így fogom hívni azokat az őrülteket,
+akik minden szuper ötletembe beszálltak és aktívan részt vettek) folyamatosan szervereket próbáltunk összerakni több-kevesebb sikerrel. Emlékszem, hogy
+az egyik megnyitásakor sikerült 50 egyidejű játékost összeszednünk, ami akkor óriási kuriózumnak számított. Ez volt az akkori karrier csúcspontja.
+Spoiler: 3 nappal később a szerver már nem létezett.
+
+<Image
+  src="/images/minecraft_server.jpg"
+  alt="Total Picture of a Minecraft Spawn"
+/>
+
+Ugyan egészen koordinált kis csapatokat sikerült összeszervezni, de érdeklődés hiányában nem voltak túl hosszú életűek. Ebben az időszakban megismerkedtem nagyon
+sok hozzám hasonló emberrel, határon átívélő, mai napig tartó barátságok alakultak ki, ami egy 11-12 éves gyerek számára nem kis dolognak számított.
+
+Kicsit újfent haladunk az időben, a szerverépítős korszak végére érünk. Ekkorra már sikerült összeszedni egy kis Java-s tapasztalatot, amivel már elkezdettem
+GUI-s programokat írni. Az egyik első néhány ötlet, amit meg szerettem volna valósítani túl bonyolult volt és elment a kedvem a GUI alapú programozástól.
+Nem él bennem tisztán a kép, de előfordulhat, hogy nem értettem elég mélyrehatóan az online elérhető anyagokat és nem volt semmi támaszpontom vagy csak
+simán elkezdtek más dolgok érdekelni, így hát feladtam egy időre.
+
+<Image src="/images/java_hello_world.png" alt="Hello World Program in Java" />
+
+## Grafikus interfészek, azaz a VB.net
+
+Néhány hónappal később nagypapám jóvoltából hallottam a Basic nyelvről, majd kicsit utánanéztem, hogy mégis miről van szó. Kiderült, VB.net-ben egészen könnyen
+lehet grafikus felületeket készíteni, majd azokat összekötni funkcionálitással. Ez viszont már megfogott és volt is benne sikerélményem. Itt ismerkedtem meg a klasszikus
+iskolai példákkal és fogalmakkal, mint például az I/O, a fájlkezelés és az SQL adatbázisok.
+
+<div className="flex flex-row gap-0 my-8">
+  <Image src="/images/vb_net.png" alt="VB.net Logo" />
+  <Image src="/images/sql.png" alt="SQL Database Logo" />
+</div>
+
+Aprócska hobbi projekteket készítettem elsősorban, illetve a saját életemet is megkönnyítő kis eszközöket, mint például az irásban osztó programomat. Abban az
+időszakban az iskolában elképesztően sokat kellett gyakorolni az írásban osztást és annak levezetését, ami egyáltalán nem ragadta meg a figyelmemet, így hát írtam
+rá egy programot és soha többször nem csináltam osztásos matek házit. Ennek a szövegnek írásakor 16 éves vagyok és azóta sem tanultam meg írásban osztani a
+visszaszorozgatásos technikával. Bocsánat, Jutka néni!
+
+[... További részek hamarosan ...]

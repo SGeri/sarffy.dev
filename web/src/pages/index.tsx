@@ -14,6 +14,7 @@ import { getPosts } from "@utils";
 import { Post } from "@types";
 
 // update cv image to the new one
+// fix production fonts
 
 interface HomeProps {
   posts: Post[];

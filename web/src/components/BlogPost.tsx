@@ -13,7 +13,7 @@ const BlogPost = ({ meta, children }: BlogPostProps) => (
     <Meta {...meta} />
 
     <MDXProvider components={BlogElements}>
-      <main className="flex flex-col px-8 md:px-24 lg:px-36 min-h-[75vh] mt-6">
+      <main className="flex flex-col px-8 md:px-24 xl:px-80 min-h-[75vh] mt-6">
         {children}
       </main>
     </MDXProvider>
