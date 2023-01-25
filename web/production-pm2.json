@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "sarffy.dev",
+      "script": "npm",
+      "args": "start"
+    }
+  ]
+}
