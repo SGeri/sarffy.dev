@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { default as BaseImage } from "next/image";
 
 export interface ImageProps {
-  variant?: "small" | "medium" | "large" | "full";
+  variant?: "extra-small" | "small" | "medium" | "large" | "full";
   src: string;
   alt: string;
 }
@@ -15,6 +15,7 @@ const Image = ({ variant = "medium", src, alt }: ImageProps) => (
         "lg:w-[80%]": variant === "large",
         "lg:w-[50%]": variant === "medium",
         "lg:w-[30%]": variant === "small",
+        "lg:w-[15%]": variant === "extra-small",
       })}
       src={src}
       alt={alt}

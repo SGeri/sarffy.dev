@@ -95,7 +95,7 @@ export default function Navbar({ links }: NavbarProps) {
           <div
             ref={mobileMenuRef}
             className={clsx(
-              "navbar absolute right-0 top-0 w-[50%] h-screen bg-slate-700 bg-opacity-95 flex flex-col justify-center items-center gap-16 shadow-l-md overflow-y-auto transform transition-transform duration-500 ease-in-out",
+              "navbar fixed right-0 top-0 w-[50%] h-screen bg-slate-700 bg-opacity-95 flex flex-col justify-center items-center gap-16 shadow-l-md overflow-y-auto transform transition-transform duration-500 ease-in-out",
               opened ? "translate-x-0" : "translate-x-full"
             )}
           >

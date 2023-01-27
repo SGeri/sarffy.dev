@@ -7,7 +7,7 @@ const BLOGS_DIR = path.join(process.cwd(), "src", "pages", "blog");
 export default async function getPosts() {
   const posts = await readBlogFiles();
 
-  return posts;
+  return sortPosts(posts);
 }
 
 async function readBlogFiles(): Promise<Post[]> {
@@ -17,17 +17,30 @@ async function readBlogFiles(): Promise<Post[]> {
 
   const tasks = fileNames.map(async (file) => {
     const {
-      options: { title, description, image, tags },
+      options: { title, description, image, date, tags },
     } = await import(`../pages/blog/${file}`);
 
     return {
       title,
       description,
       image,
+      date,
       tags,
       slug: file.replace(/\.mdx$/, ""),
     };
   });
 
   return Promise.all(tasks);
+}
+
+function sortPosts(posts: Post[]) {
+  return posts.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else if (a.date > b.date) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
 }

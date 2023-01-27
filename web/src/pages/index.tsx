@@ -321,5 +321,7 @@ const ContactSection = () => (
 export async function getStaticProps() {
   const posts = await getPosts();
 
-  return { props: { posts } } as const;
+  const latestPosts = posts.slice(0, 3);
+
+  return { props: { posts: latestPosts } } as const;
 }
