@@ -1,8 +1,9 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from "react-icons/ai";
-import { SiDiscord, SiSpotify } from "react-icons/si";
+import { AiFillFacebook, AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import { SiSpotify } from "react-icons/si";
 import { Meta, Navbar, Socials, Footer } from "@components";
+
+import "../styles/globals.css";
 
 const links = [
   {
@@ -39,14 +40,9 @@ const icons = [
     component: AiFillLinkedin,
   },
   {
-    text: "Discord",
-    href: "https://discord.com/SGeri",
-    component: SiDiscord,
-  },
-  {
-    text: "Youtube",
-    href: "https://www.youtube.com/@SGeri",
-    component: AiFillYoutube,
+    text: "Facebook",
+    href: "https://www.facebook.com/sarffygeri",
+    component: AiFillFacebook,
   },
   {
     text: "Spotify",
@@ -55,7 +51,6 @@ const icons = [
   },
 ];
 
-// todo add footer for blog
 // add nicer scroll bar
 // add animations on load and on scroll
 // interactive sticky navbar?

@@ -296,7 +296,7 @@ const AboutSection = () => (
 
     <div className={clsx("flex flex-col justify-center items-center")}>
       <Image
-        src="/images/person.svg"
+        src="/images/profile-round.png"
         alt="Picture of the author"
         className="w-full max-w-lg px-10 m-4"
         width={1920}

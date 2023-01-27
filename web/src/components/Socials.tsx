@@ -2,9 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { IconType } from "react-icons";
 
-// TODO
-// use Icon.text as a small popup on hover
-// fix social links
+// todo: use Icon.text as a small popup on hover
 
 export interface SocialsProps {
   icons: Icon[];
