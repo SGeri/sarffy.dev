@@ -2,30 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide nav carousel overflow */
 html,
 body {
   @apply bg-slate-900;
   overflow-x: hidden;
 }
 
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #b6acb9 #ffffff;
-}
+/* Modern scrollbar only for large views */
+@media screen and (min-width: 1024px) {
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #b6acb9 #ffffff;
+  }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 16px;
-}
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
 
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #b6acb9;
-  border: 5px solid rgb(15 23 42);
-  border-radius: 10px;
+  *::-webkit-scrollbar-thumb {
+    background-color: #b6acb9;
+    border: 5px solid rgb(15 23 42);
+    border-radius: 10px;
+  }
 }
 
 .navbar {
