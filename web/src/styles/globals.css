@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
   @apply bg-slate-900;
   overflow-x: hidden;

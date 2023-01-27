@@ -24,82 +24,80 @@ export default function Home({ posts }: HomeProps) {
   const [tools, toolsType, changeTools] = useTools();
 
   return (
-    <>
-      <main className="flex flex-col px-8 md:px-24 lg:px-36 min-h-[75vh] items-center justify-center">
-        <section className="flex items-center mx-auto min-h-[75vh]">
-          <HeroSection />
-        </section>
+    <main className="flex flex-col px-8 md:px-24 lg:px-36 min-h-[75vh] items-center justify-center">
+      <section className="flex items-center mx-auto min-h-[75vh]">
+        <HeroSection />
+      </section>
 
-        <section id="blog" className="min-h-min mx-auto">
-          <SectionHeader
-            title="Recent posts"
-            text="In my blog posts you will find information about my personal projects and experiences, as well as my toolset and development environment. I may also share insights and reflections on other areas of interest in the future."
-          />
+      <section id="blog" className="min-h-min mx-auto">
+        <SectionHeader
+          title="Recent posts"
+          text="In my blog posts you will find information about my personal projects and experiences, as well as my toolset and development environment. I may also share insights and reflections on other areas of interest in the future."
+        />
 
-          <BlogsSection posts={posts} />
-        </section>
+        <BlogsSection posts={posts} />
+      </section>
 
-        <section id="tech" className="min-h-min pt-24">
-          <SectionHeader
-            title="Technology Stack"
-            text="As a full stack developer, my role is to build, test and deploy web applications from start to finish. I work on both front-end and back-end aspects of the application. I handle the deployment and maintenance of the application, making sure it runs smoothly and efficiently. I also communicate with clients to understandtheir requirements, and provide solutions and support throughout the development process. I am also familiar with DevOps methodologies to ensure efficient and robust application delivery."
-          />
+      <section id="tech" className="min-h-min pt-24">
+        <SectionHeader
+          title="Technology Stack"
+          text="As a full stack developer, my role is to build, test and deploy web applications from start to finish. I work on both front-end and back-end aspects of the application. I handle the deployment and maintenance of the application, making sure it runs smoothly and efficiently. I also communicate with clients to understandtheir requirements, and provide solutions and support throughout the development process. I am also familiar with DevOps methodologies to ensure efficient and robust application delivery."
+        />
 
-          <ToolsSection tools={tools} />
+        <ToolsSection tools={tools} />
 
-          <div className="flex flex-row justify-center gap-6">
-            <Button
-              rounded="2xl"
-              bg={toolsType === ToolTypes.Frontend ? "bg-green-600" : undefined}
-              tooltip={ToolTypes.Frontend}
-              onClick={() => changeTools(ToolTypes.Frontend)}
-            >
-              <BsDisplay size={32} color="#cbd5e1" />
-            </Button>
-            <Button
-              rounded="2xl"
-              bg={toolsType === ToolTypes.Backend ? "bg-green-600" : undefined}
-              tooltip={ToolTypes.Backend}
-              onClick={() => changeTools(ToolTypes.Backend)}
-            >
-              <BsServer size={32} color="#cbd5e1" />
-            </Button>
-            <Button
-              rounded="2xl"
-              bg={toolsType === ToolTypes.Devops ? "bg-green-600" : undefined}
-              tooltip={ToolTypes.Devops}
-              onClick={() => changeTools(ToolTypes.Devops)}
-            >
-              <FaHammer size={32} color="#cbd5e1" />
-            </Button>
-          </div>
-        </section>
+        <div className="flex flex-row justify-center gap-6">
+          <Button
+            rounded="2xl"
+            bg={toolsType === ToolTypes.Frontend ? "bg-green-600" : undefined}
+            tooltip={ToolTypes.Frontend}
+            onClick={() => changeTools(ToolTypes.Frontend)}
+          >
+            <BsDisplay size={32} color="#cbd5e1" />
+          </Button>
+          <Button
+            rounded="2xl"
+            bg={toolsType === ToolTypes.Backend ? "bg-green-600" : undefined}
+            tooltip={ToolTypes.Backend}
+            onClick={() => changeTools(ToolTypes.Backend)}
+          >
+            <BsServer size={32} color="#cbd5e1" />
+          </Button>
+          <Button
+            rounded="2xl"
+            bg={toolsType === ToolTypes.Devops ? "bg-green-600" : undefined}
+            tooltip={ToolTypes.Devops}
+            onClick={() => changeTools(ToolTypes.Devops)}
+          >
+            <FaHammer size={32} color="#cbd5e1" />
+          </Button>
+        </div>
+      </section>
 
-        <section id="references" className="min-h-min pt-24">
-          <SectionHeader
-            title="Projects"
-            text="As a Fullstack Web and DevOps developer, I have experience working with a variety of technologies, but most commonly using the React ecosystem. Some of my past projects include building and maintaining web applications using React with Typescript, as well as implementing continuous integration and deployment pipeline using technologies like Docker, Serverless and AWS Services. I have experience in different project methodologies such as Agile, and have a strong understanding of software development best practices, including version control systems and testing. Additionally, I am experienced in optimizing and scaling web applications to handle different amounts of traffic and data."
-          />
+      <section id="references" className="min-h-min pt-24">
+        <SectionHeader
+          title="Projects"
+          text="As a Fullstack Web and DevOps developer, I have experience working with a variety of technologies, but most commonly using the React ecosystem. Some of my past projects include building and maintaining web applications using React with Typescript, as well as implementing continuous integration and deployment pipeline using technologies like Docker, Serverless and AWS Services. I have experience in different project methodologies such as Agile, and have a strong understanding of software development best practices, including version control systems and testing. Additionally, I am experienced in optimizing and scaling web applications to handle different amounts of traffic and data."
+        />
 
-          <ProjectsSection />
-        </section>
+        <ProjectsSection />
+      </section>
 
-        <section id="about" className="min-h-min pt-24">
-          <SectionHeader title="About me" />
+      <section id="about" className="min-h-min pt-24">
+        <SectionHeader title="About me" />
 
-          <AboutSection />
-        </section>
+        <AboutSection />
+      </section>
 
-        <section id="contact" className="min-h-min py-24">
-          <SectionHeader
-            title="Contact me"
-            text="I am always open to new opportunities and eager to take on new challenges. I am constantly seeking to expand my skill set and grow as a developer. I am confident in my abilities and believe that I can bring value to any project or team. If you are a recruiter or hiring manager looking for a talented and dedicated developer, please feel free to contact me to discuss any potential opportunities. I am open to hearing about any exciting projects or roles that align with my skills and experience."
-          />
+      <section id="contact" className="min-h-min py-24">
+        <SectionHeader
+          title="Contact me"
+          text="I am always open to new opportunities and eager to take on new challenges. I am constantly seeking to expand my skill set and grow as a developer. I am confident in my abilities and believe that I can bring value to any project or team. If you are a recruiter or hiring manager looking for a talented and dedicated developer, please feel free to contact me to discuss any potential opportunities. I am open to hearing about any exciting projects or roles that align with my skills and experience."
+        />
 
-          <ContactSection />
-        </section>
-      </main>
-    </>
+        <ContactSection />
+      </section>
+    </main>
   );
 }
 
