@@ -279,7 +279,7 @@ const AboutSection = () => (
 
       <div className="flex justify-center">
         <Link
-          href="/sarffy_gergo_cv2023.jpg"
+          href="/sarffy_gergo_cv2023.png"
           target="_blank"
           rel="noopener noreferrer"
         >
