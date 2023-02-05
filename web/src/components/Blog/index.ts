@@ -4,6 +4,8 @@ import Heading from "./Heading";
 import Text from "./Text";
 import Pre from "./Pre";
 import InlineCode from "./InlineCode";
+import Ul from "./Ul";
+import Li from "./Li";
 
 // todo add more elements like a, ul, ol, li, etc.
 const BlogElements = {
@@ -16,6 +18,8 @@ const BlogElements = {
   p: Text,
   pre: Pre,
   code: InlineCode,
+  ul: Ul,
+  li: Li,
 };
 
 export type InstrictBlogElementType = DetailedHTMLProps<
