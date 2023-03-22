@@ -298,7 +298,7 @@ const AboutSection = () => (
       <Image
         src="/images/profile-round.png"
         alt="Picture of the author"
-        className="w-full max-w-lg px-10 m-4"
+        className="w-full max-w-lg px-10 m-4 aspect-square"
         width={1920}
         height={1080}
       />
