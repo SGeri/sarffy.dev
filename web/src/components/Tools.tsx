@@ -7,7 +7,6 @@ import {
   SiRedux,
   SiReactrouter,
   SiTailwindcss,
-  SiMaterialui,
   SiCss3,
   SiNodedotjs,
   SiNestjs,
@@ -29,7 +28,7 @@ import {
   SiWordpress,
   SiTrello,
 } from "react-icons/si";
-import { TbBrandReactNative } from "react-icons/tb";
+import { TbBrandReactNative, TbBrandMantine } from "react-icons/tb";
 import { FaAws } from "react-icons/fa";
 
 export const FRONTEND_TOOLS = [
@@ -79,9 +78,9 @@ export const FRONTEND_TOOLS = [
     icon: SiTailwindcss,
   },
   {
-    name: "Material UI",
-    link: "https://material-ui.com/",
-    icon: SiMaterialui,
+    name: "Mantine UI",
+    link: "https://mantine.dev",
+    icon: TbBrandMantine,
   },
 ];
 
