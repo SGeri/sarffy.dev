@@ -1,9 +1,24 @@
+import React from "react";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { InstrictBlogElementType } from ".";
 
-//todo better way of code highlighting
+const InlineCode = ({ children, className }: InstrictBlogElementType) => {
+  const language = className?.replace("language-", "") || "plaintext";
 
-const InlineCode = ({ children }: InstrictBlogElementType) => (
-  <code className="bg-gray-800 p-1 rounded-md">{children}</code>
-);
+  return (
+    <SyntaxHighlighter
+      language={language}
+      style={a11yDark}
+      customStyle={{
+        background: "none",
+      }}
+      PreTag="span"
+      CodeTag="code"
+    >
+      {String(children)}
+    </SyntaxHighlighter>
+  );
+};
 
 export default InlineCode;

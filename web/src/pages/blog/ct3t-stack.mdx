@@ -1,0 +1,111 @@
+import Link from "next/link";
+import { BlogPost, Image } from "@components";
+
+export const options = {
+  title: "CT3T - Webfejlesztés 2023-ban",
+  description:
+    "A CT3T Stack bemutatása a modern webfejlesztés legjobb eszközeivel, bevált gyakorlatokkal és technológiákkal.",
+  image: "/images/t3-bg.webp",
+  date: "2023-04-14",
+  tags: ["#HU", "#T3Stack", "#CT3T", "#WebDevelopment"],
+  meta: {
+    title: "CT3T Stack",
+  },
+};
+
+export default ({ children }) => (
+  <BlogPost meta={options.meta}>{children}</BlogPost>
+);
+
+# CT3T Stack - Webfejlesztés 2023-ban
+
+## Mit is jelent ez pontosan?
+
+A CT3T Stack a **T3** egy újabb változata, mely tartalmaz további eszközöket és megoldásokat, amelyeket hétköznapi webes és
+mobilfejlesztés során használunk. A teljesség igénye nélkül a T3 stack legjobb jellemzői összefoglalhatók azzal, hogy a
+**Type-safety**re, azaz szigorúan tipizált kódra és **end-to-end biztonságra** törekszik. A projekt minden
+pontja **Typescriptet** használ és a backenddel való kommunikáció REST helyett tRPC segítségével történik.
+Ezzel biztosítható, hogy nem kell kliens oldalon újra definiálnunk a backendes típus interface-eket, helyette
+a Typescript mágiával a kliens a backend procedúráiból következteti ki a típusokat.
+
+Ez a T3 Stack néhány mondatos megfogalmazása, ennél lényegesen bővebben a [stack oldalán](https://create.t3.gg) olvashatunk.
+
+[Julius Marminge](https://github.com/juliusmarminge) a T3 Stacket, amely alapvetően csak egy NextJS alapú full-stack
+framework, és a mobilfejlesztés feltörekvő keretrendszerét, az [Expot](https://expo.io) ötvözve elkészítette a
+a **create-t3-turbo** stacket, amely kódja és dokumentáció az [alábbi](https://github.com/t3-oss/create-t3-turbo)
+repoban megtalálható. Ezt a két technológiát egy [Turborepo](https://turbo.build/repo) formájában ötvözi,
+amellyel felgyorsíthatóak a buildelési folyamatok és struktúráltabb projekteket készíthetünk a workspace-ek segítségével.
+
+A create-t3-turbo stack alapján készítettem el a CT3T-t azzal a céllal, hogy megoldást kínáljak az olyan problémákra,
+amelyek minden projekt megkezdésekor megjelennek. A CT3T tekinthető egy fejlett, sokrétű boilerplate projektnek, ami
+tulajdonképpen igaz is. **Most pedig vágjunk bele, miket is tartalmaz a CT3T!**
+
+## A CT3T Stack
+
+### pnpm helyett npm
+
+A pnpm egy remek csomagkezelő, amely elsősorban a cache rendszeréről és gyorsaságáról híres. Mégis, ebben a projektben
+az npm-et használjuk, mert úgy gondolom, hogy a legtöbb fejlesztő még sosem használta, így csapatmunka esetén megkönnyíti
+a beilleszkedést, ha legalább a package manager ismert. Ezenkívül a pnpm workspace kezelése valamivel bonyolultabb, mint
+az npm és egyéb nem várt hibák is adódnak, amiket csak workaroundokkal tudunk megoldani, így tehát az npm-re
+esett a választásom.
+
+### Clerk integráció
+
+A T3 csapata által kiválasztott jelenlegi authentikációs megoldás a Next-Auth (jelenleg Auth.js névre változik).
+Alapvetően ez egy jó megoldás, amennyiben kizárólag webre készülünk és nem kell mobilos hitelesítéssel foglalkoznunk.
+A CT3T pedig nagyban leglaább olyanannyira van mobilra tervezve, mint webre, így alternatív megoldásra volt szükség.
+
+A bejelentkezés, felhasználói profilok kezelése és a session management mindig nagy fejtörést okoz a fejlesztőknek.
+Semmiképp nem ajánlott saját megoldást készíteni többek között a karbantarthatóság, a biztonsági kockázatok, na és persze
+a munkaórák száma miatt is, így a Clerk nagyon jó választás lehet.
+
+Egyszerű, mégis nagyszerű megoldást kínál nekünk a Clerk mind kliens oldalon (weben és mobilon egyaránt!), mind
+backend oldalon.
+
+### RBA, azaz Role-based access
+
+Modern webaplikációkban gyakori a felhasználói szerepek kezelése és a hozzájuk tartozó jogosultságok. A CT3T-ben
+a NextJS **_getServerSideProps_** logikájának kiterjesztésével védjük le az oldalakat és biztosítjuk a kliens számára a
+bejelentkezett felhasználó profilját az adatbázisban található adatokkal.
+
+Használata egyszerű, az alábbi példa alapján hozzunk létre egy új oldalt a **_next/src/pages_** mappában.
+
+```tsx
+import { Role } from "@packages/db";
+import { api } from "~/utils/api";
+import { requireAuth, type ProtectedPage } from "~/utils/auth";
+
+const ProtectedPage: ProtectedPage = ({ user }) => {
+  return (
+    <h1>Bejelentkezett felhasználó: {user.name}<h1>
+  );
+};
+
+export const getServerSideProps = requireAuth(Role.ADMIN);
+
+export default ProtectedPage;
+```
+
+Adatbázis szinten minden **_User_**-hez tartozik egy \***\*clerkId\*\*** mező, amely a Clerk által generált azonosító
+és egy **_role_**, ami megfelel Role enum, amit a **_requireAuth_** metódusban használunk a megfelelő jogusultsági
+szint megadására. A **_ProtectedPage_** típus használatával a **_user_** prop a prisma által generált **_User_** típusú objektum lesz.
+
+A funkció implementációja megtalálható a **_utils/auth.ts_** fájlban.
+
+Hasonlóan egyszerű megközelítéssel védhetjük le a backend procedúráinkat is. A **_api/src/procedures_** fájlban megtalálható
+a **_createProtectedProcedure_** függvény, amely egy function factory és olyan védett procedúrát ad vissza, amelyet
+bármelyik tRPC routerben lehet használni, csakúgy, mint a publicProcedure-t.
+
+Új védett procedúrához az alábbi sort adjuk hozzá a **_api/src/trpc.ts_** fájl végére:
+
+```tsx
+export const adminProcedure = createProtectedProcedure(Role.ADMIN);
+```
+
+A frontendhez hasonlóan a Role enumot használjuk a jogosultság megadására. Ha több role-hoz szeretnénk hozzárendelni az oldalt,
+akkor a paramétert tömbként adjuk át.
+
+```tsx
+export const managementProcedure = requireAuth([Role.ADMIN, Role.MANAGER]);
+```
