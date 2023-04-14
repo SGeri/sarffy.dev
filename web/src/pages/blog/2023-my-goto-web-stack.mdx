@@ -1,0 +1,99 @@
+import Link from "next/link";
+import { BlogPost, Image } from "@components";
+
+export const options = {
+  title: "Az én 2023-as webstackem",
+  description:
+    "2022 a webes keretrendszerek és könyvtárak terén bonyolult év volt, ezért összegyűjtöttem a kedvenceimet, amiket 2023-ban is használni fogok.",
+  image: "/images/2023-web-stack-preview.png",
+  date: "2023-02-05",
+  tags: ["#WebDevelopment", "#FullStack", "#MyStack"],
+  meta: {
+    title: "2023 Web Stack",
+  },
+};
+
+export default ({ children }) => (
+  <BlogPost meta={options.meta}>{children}</BlogPost>
+);
+
+# Az én 2023-as webstackem
+
+2022 egy igazán termékeny év volt a webes keretrendszerek és könyvtárak terén, ezért összegyűjtöttem a kedvenceimet, amiket 2023-ban is használni fogok.
+Az alábbi gyűjtemény egy olyan listát tartalmaz, amely talán folyamatosan fejlődni fog, illetve egy webes projekt legtöbb (ha nem minden!) igényét kielégíti.
+Többek között megvizsgáljuk a frontendes és backendes megoldásokat, illetve a continous integration és release management megoldásokat is.
+
+### Frontend
+
+<Image variant="extra-small" src="/images/nextjs.png" alt="NextJS Logo" />
+
+A Vercel 2022-es októberi konferenciáján mutatták be a **Next 13**-at, amely ha a React ökoszisztémát tekintjük, egyértelműen toronymagasan a legjobb választás.
+Ugyan megoszlanak a vélemények, hogy a Next frontend vagy backend framework, de ebben az esetben kizárólag frontend frameworkként fogunk rá tekinteni, de nem mehetünk
+el az a tény mellett, hogy a kisebb projektekhez tökéletes megoldás lehet a Next API Route megoldása.
+
+- **SSR** - Szerver oldali renderelés: lehető legjobb SEO és teljesítmény, cache-elés, illetve gyorsabb initial load.
+- **File-based routing** - A React Router helyett az oldalakat a fájlrendszer alapján készíti el: jobb fejlesztői élmény, könnyebb karbantarthatóság.
+- **Optimalizálások** - A Next 13 beépített optimalizációkat tartalmaz, mint pl. képoptimalizálás, lazy loading, stb.
+- **Next ecosystem** - A Next körül kialakult ökoszisztéma lényegesen javítja a fejlesztői élményt (pl. a NextAuth, Next-i18next, Next-SEO, stb.)
+
+# Frontend könyvtárak
+
+## State Management & Data Fetching
+
+<div className="flex flex-row gap-0 my-8">
+  <Image src="/images/zustand.png" alt="Zustand Logo" />
+  <Image variant="small" src="/images/react-query.svg" alt="React Query Logo" />
+  <Image src="/images/swr.png" alt="SWR Logo" />
+</div>
+
+Korábban egyértelmű választás lett volna a Redux, viszont nemrégiben megjelent a **Zustand**, amely egy nagyon egyszerű és könnyen használható state management könyvtár.
+Nincsenek felesleges absztrakciók és végtelen mennyiségű boilerplate kód, a Zustand egy nagyon kis könyvtár, ráadásul meglehetősen lightweight (összesen 2.9 kb).
+Továbbá nem kellenek más könyvtárak hozzá, mint a redux-thunk, a redux-toolkit vagy akár a redux-saga.
+
+Amennyiben viszont nem szükséges komoly state management, a **React Query** is jó választás lehet. Könnyen használható és egyben működik state management libraryként
+a motorháztető alatt.
+
+Ezen kívül alternatív megoldás lehet még a szintén Vercel fejlesztésű **SWR** is, amely egy nagyon hasonló megoldás, mint a React Query: gyors, folyamatos
+reaktivitást biztos, támogatja az SSR-t és természetesen lightweight.
+
+## UI & Styling
+
+<div className="flex flex-row gap-0 my-8">
+  <Image variant="small" src="/images/tailwind.png" alt="Tailwind Logo" />
+  <Image variant="small" src="/images/mantine.png" alt="Mantine Logo" />
+  <Image variant="small" src="/images/material-ui.png" alt="MaterialUI Logo" />
+</div>
+
+2022 egyik legmegosztóbb témája a **TailwindCSS** megjelenése és alkalmazása volt nagyobb projektekben. Természetesen megvannak az előnyei és hátrányai, mindkét oldalról
+olvashatunk jogos érveket. Én annak a pártján állok, hogy amennyiben komponensekké szervezzük ki a hosszú Tailwind classokat, akkor nem lesz gond a karbantarthatósággal.
+Használata a prototipizálást jelentősen meggyorsítja és architektúrában is nagyon egyszerű, de mégis nagyszerű rendszereket hozhatunk létre.
+
+Azonban ha nem szeretnénk teljesen saját design rendszert fejleszteni, akkor a **Mantine** tökéletes választás lehet. Több száz előre elkészített, mégis nagy szabadságot
+biztosító komponenset tartalmaz, amelyeket könnyen felhasználhatunk a saját projektünkben. A **MantineUI** a Mantine fejlesztői által készített komponens könyvtár,
+amely Mantine alapú komponenseket tartalmaz és könnyedén beilleszthetők bármilyen környezetbe. Ezenkívül a Mantine remek dokumentációval rendelkezik és nagyon sok
+utility eszköz tartalmaz, amely óriási segítséget jelenthet a fejlesztésben.
+
+A **MaterialUI** egy nagyon ismert és népszerű React UI könyvtár, amely nagyon sok előre elkészített komponenst tartalmaz. Elterjedt könyvtár, de szerintem nagyon sok
+gyerekbetegsége van, amit újabb könyvtárak sorra oldanak meg. De természetesen nem mehetünk el amellett, hogy egy megbízható és jól bevált megoldásról van szó, így
+elsősorban nagyobb projektekhez ajánlom.
+
+# Backend
+
+<Image variant="small" src="/images/nestjs.png" alt="NestJS Logo" />
+
+Amennyiben szeretnénk a Typescript berkekben maradni (és nagyon ebben az esetben nagyon szeretnénk), akkor a **NestJS** egy nagyon jó választás lehet. A NestJS egy
+egy microservice-ekre épülő keretrendszert, moduláris architektúrát és egy nagyon erős TypeScript támogatást kínál. A framework használható rest api formájában,
+de remek GraphQL támogatással is rendelkezik, ami egy **codegen** rendszer segítségével közös (generált) típusokat biztosít a kliens számára is.
+Emellett egyszerű cache-elési megoldást is kínál és nagy hangsúly fektet a skálázhatóságra és a tesztelhetőségre.
+
+## Backend könyvtárak
+
+[...] - folyt köv innen
+
+# Mobil
+
+[...] - react native
+
+**Szerző: Sárffy Gergő**
+
+**Publikálás dátuma: 2023. 01. 27.**
