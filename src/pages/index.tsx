@@ -13,7 +13,6 @@ import { Card, Button, useTools, ToolTypes, Projects, Tool } from "@components";
 import { getPosts } from "@utils";
 import { Post } from "@types";
 
-// update cv image to the new one
 // fix production fonts
 
 interface HomeProps {
@@ -279,7 +278,7 @@ const AboutSection = () => (
 
       <div className="flex justify-center">
         <Link
-          href="/sarffy_gergo_cv2023.png"
+          href="/sarffy_gergo_cv2023_v2.png"
           target="_blank"
           rel="noopener noreferrer"
         >
