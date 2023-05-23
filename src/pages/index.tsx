@@ -203,7 +203,7 @@ const ProjectsSection = () => (
             <Image
               src={image}
               alt={imageAlt}
-              className="w-full aspect-video border-2 border-cyan-200 rounded"
+              className="w-full border-2 border-cyan-200 rounded aspect-auto"
               width={1920}
               height={1080}
             />

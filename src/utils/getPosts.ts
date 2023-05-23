@@ -17,7 +17,6 @@ async function readBlogFiles(): Promise<Post[]> {
   //fileNames = fileNames.map((filename) => path.join(BLOGS_DIR, filename));
 
   const tasks = fileNames.map(async (file) => {
-    console.log("AAAA", file);
     const {
       options: { title, description, image, date, tags, published },
     } = await import(`../pages/blog/${file}`);

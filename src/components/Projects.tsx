@@ -1,5 +1,14 @@
 export const Projects = [
   {
+    name: "CT3T - Modern Web Stack",
+    link: "https://github.com/SGeri/ct3t",
+    project: "https://github.com/SGeri/ct3t",
+    image: "/images/t3-bg.webp",
+    imageAlt: "CT3T Background",
+    description:
+      "The CT3T Stack is a newer version of T3 that includes additional tools and solutions used in everyday web and mobile development. Without being exhaustive, the best features of the T3 stack can be summarized by its focus on type-safety, i.e. strictly typed code and end-to-end security. All points of the project use Typescript and communication with the backend is done using tRPC instead of REST. This ensures that we don't have to redefine the backend type interfaces on the client side, instead the client uses Typescript magic to infer types from backend procedures.",
+  },
+  {
     name: "Forródrót",
     link: "https://forrodrot.com/",
     project: "https://github.com/SGeri/forrodrot",
